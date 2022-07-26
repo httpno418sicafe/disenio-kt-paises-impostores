@@ -43,6 +43,6 @@ class Pais(
 
     fun convertirAMoneda(dinero: Double, pais: Pais): Double {
         val valorDolar = dinero * this.cotizacionDolar
-        return (((valorDolar * pais.cotizacionDolar) * 100).roundToInt().toDouble() / 100)
+        return ((valorDolar * pais.cotizacionDolar) * 100).roundToInt().toDouble() / 100
     }
 }

@@ -1,5 +1,7 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
+import kotlin.math.roundToInt
+
 class Observatorio (val paises: List<Pais>) {
 
     fun sonLimitrofes(primerPais: String, segundoPais: String): Boolean {
@@ -35,6 +37,22 @@ class Observatorio (val paises: List<Pais>) {
     }
 
     fun continenteConMasPlurinacionales(): String {
+        val paisesPorContinentes = this.paises.groupBy { it.continente }
+        var continenteConMayorDensidad: String = ""
+        for (key in paisesPorContinentes.keys) {
+            if (continenteConMayorDensidad == "") {
+                continenteConMayorDensidad = key
+            } else {
+                if (paisesPorContinentes[continenteConMayorDensidad]!!.sumBy{it.densidadPoblacional()} < paisesPorContinentes[key]!!.sumBy{it.densidadPoblacional()}){
+                    continenteConMayorDensidad = key
+                }
+            }
+        }
+        return continenteConMayorDensidad
+    }
 
+    fun promedioDensidadPoblacionalInsulares(): Double {
+        val paisesInsulares = this.paises.filter {it.esIsla()}
+        return ((paisesInsulares.sumBy { it.densidadPoblacional() } / paisesInsulares.size) * 100).toDouble() / 100
     }
 }
