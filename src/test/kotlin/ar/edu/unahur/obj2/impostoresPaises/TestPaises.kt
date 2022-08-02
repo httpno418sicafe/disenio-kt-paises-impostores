@@ -40,7 +40,6 @@ class TestPaises: DescribeSpec({
             listOf("UNASUR"), listOf("Portuges")
         )
 
-
         it("Argentina ahora es isla") {
             argentina.esIsla().shouldBeTrue()
         }

@@ -1,5 +1,6 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
+import io.kotest.assertions.show.show
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -27,6 +28,12 @@ class TestObservatorio: DescribeSpec({
 
         it("Singleton Funciona") {
             observatorio2.paises.shouldBe(listOf(argentina,bolivia, brasil))
+        }
+
+        it("Decorador funciona"){
+            val observatorioDecorado = MedidaBilletesDecorador(observatorio)
+            observatorio.leerDolares("Argentina","Bolivia").show()
+            observatorioDecorado.meAlcanzaCon100para1dolar("Argentina", "Bolivia").show()
         }
 
         it("Son limitrofes") {
