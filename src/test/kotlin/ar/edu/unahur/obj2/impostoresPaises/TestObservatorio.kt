@@ -22,7 +22,12 @@ class TestObservatorio: DescribeSpec({
             listOf("UNASUR"), listOf("Portuges")
         )
 
-        val observatorio = Observatorio(listOf(argentina, bolivia, brasil))
+        val observatorio: Observatorio = Observatorio.getInstance(listOf(argentina, bolivia, brasil))
+        val observatorio2: Observatorio = Observatorio.getInstance(listOf(bolivia, argentina, brasil))
+
+        it("Singleton Funciona") {
+            observatorio2.paises.shouldBe(listOf(argentina,bolivia, brasil))
+        }
 
         it("Son limitrofes") {
             observatorio.sonLimitrofes("Argentina", "Bolivia").shouldBeFalse()

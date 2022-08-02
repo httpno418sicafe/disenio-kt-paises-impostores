@@ -7,6 +7,23 @@ import io.kotest.matchers.shouldBe
 
 class TestPaises: DescribeSpec({
     describe("Etapa 1") {
+        val builder = LandBuilder()
+        val director = Director()
+
+        director.construirPais(builder, "Argentina", "ARG", 1234, 1234.2,
+            "América", "ARS", 338.82, listOf(), listOf("UNASUR"), listOf("Español"))
+
+        val argentina2 = builder.getInstance()
+
+        director.construirIsla(builder, "Argentina", "ARG", 1234, 1234.2,
+            "América", "ARS", 338.82, listOf("Español"))
+
+        val argentinaIsla = builder.getInstance()
+
+        director.construirNacion(builder, "Argentina", "ARG", 1234, listOf("Español"))
+
+        val argentinaNacion = builder.getInstance()
+
         val argentina = Pais(
             "Argentina", "ARG", 1234, 1234.2,
             "América", "ARS", 338.82, listOf(), listOf("UNASUR"), listOf("Español")
